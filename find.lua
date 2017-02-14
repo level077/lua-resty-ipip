@@ -1,5 +1,6 @@
 local ipx = require "lua-resty-ipip.ipdatX"
 local ipstation = require "lua-resty-ipip.ipstation"
+local ipidc = require "lua-resty-ipip.ipidc"
 local cjson = require "cjson"
 local args = ngx.req.get_uri_args()
 local ip = args["ip"]
@@ -24,6 +25,9 @@ local t = {code = 0, message = "", data = {country = info[1], province = info[2]
 local s = ipstation.IpLocationX(ip)
 if ipstation.IpLocationX(ip) then
 	t.data.station = 1
+end
+if ipidc.IpLocationX(ip) then
+        t.data.idc = 1
 end
 local value = cjson.encode(t)
 local succ,err,force = ip_cache:set(ip,value,43200)
