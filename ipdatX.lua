@@ -40,6 +40,7 @@ local function loadAreaListX()
 		file:seek("set",offset_len - 262144 + index_offset)
 		areaList[index_offset] = file:read(index_length)
 	end
+	file:close()
 end
 
 local function IpOffsetX(ipstr)

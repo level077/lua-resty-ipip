@@ -40,6 +40,7 @@ local function loadAreaListX()
 			table.insert(areaList[key],t)
 		end
 	end
+	file:close()
 end
 
 function _M.IpLocationX(ipstr)
